@@ -1,0 +1,83 @@
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+:root {
+  --primary-blue: rgba(38, 153, 251, 1);
+  --lighter-blue: rgba(127, 196, 253, 1);
+  --lightest-blue: rgba(188, 224, 253, 1);
+  --superlight-blue: rgba(241, 249, 255, 1);
+}
+
+.heading {
+  font-family: 'Montserrat';
+  font-weight: 900;
+  color: var(--primary-blue);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  font-family: sans-serif;
+}
+.wrap {
+  padding: 20px;
+}
+.body {
+  display: flex;
+  align-items: center;
+}
+.sample {
+  text-align: center;
+  border: 1px dashed #aaa;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+.sample__color {
+  display: block;
+  margin: 0 auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background-color: var(--color);
+}
+
+.controller {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 32px -36px 0;
+  padding: 32px 0 0;
+  border-top: 1px solid #ccc;
+}
+
+.controller > label {
+  display: flex;
+  align-items: center;
+}
+
+.controller button {
+  display: block;
+}
+
+.controller span {
+  display: block;
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+@media (max-width: 426px) {
+  .body {
+    flex-direction: column-reverse;
+  }
+}
+
+#color_picker {
+}

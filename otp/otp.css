@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.otpContainer {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.userInput {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  margin: 10px;
+  height: 35px;
+  width: 65px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-family: 'Montserrat';
+  font-weight: 800;
+  font-size: 1.2rem;
+  background: #eef2f3;
+}
+
+.OtpHeading {
+  text-align: center;
+  font-family: 'Montserrat';
+  color: rgba(38, 153, 251, 1);
+}
+
+button {
+  width: 150px;
+  height: 40px;
+  margin: 25px auto 0px auto;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  background: rgba(38, 153, 251, 1); /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #9bc5c3,
+    rgba(38, 153, 251, 1)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #9bc5c3,
+    rgba(38, 153, 251, 1)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
