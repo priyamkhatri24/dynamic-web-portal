@@ -69,3 +69,21 @@
 .has-float-label input[type='text']:focus:invalid {
   border: 1px solid red;
 }
+
+.intlPhone::placeholder {
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+
+.intlPhone {
+  width: 100%;
+  border-radius: 5px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  border-color: 1px solid rgba(0, 0, 0, 0.54);
+}
+
+.iti {
+  width: 100%;
+  border-radius: 5px;
+}

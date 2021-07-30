@@ -11,9 +11,13 @@
         <title>Create Domain</title>
         <link rel="stylesheet" href="./index.css">
         <link rel="stylesheet" href="./floatingLabel.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+        <script src="cities.js"></script>
 
     </head>
     <body>
+
         <div id='root' class='container'>
             <h3 class='text-center my-4 heading'>Create Your WebApp</h3>
 
@@ -34,12 +38,12 @@
                     </label>
                     <span class="formHeading">Institute Name<span class='text-danger'>*</span></span>
                     <label class='has-float-label my-auto'>
-                        <input class='form-control my-2' name='admin_ame' type='text' placeholder='Institute Name' required/>
+                        <input class='form-control my-2' name='client_name' type='text' placeholder='Institute Name' required/>
                         <span>Institute Name</span>
                     </label>
                     <span class="formHeading">Tagline</span>
                     <label class='has-float-label my-auto'>
-                        <input class='form-control  my-2' name='Tagline' type='text' placeholder='Tagline' />
+                        <input class='form-control  my-2' name='tagline' type='text' placeholder='Tagline' />
                         <span>Tagline</span>
                     </label>
                     <span class="formHeading">Email Address<span class='text-danger'>*</span></span>
@@ -48,44 +52,39 @@
                         <span>Email Address</span>
                     </label>
                     <span class="formHeading">Mobile Number<span class='text-danger'>*</span></span>
-                    <label class='has-float-label my-auto'>
+                    <!-- <label class='has-float-label my-auto'>
                         <input class='form-control  my-2' name='contact' type='number' placeholder='Mobile Number' required/>
                         <span>Mobile Number</span>
-                    </label>
-                    <span class="formHeading">City<span class='text-danger'>*</span></span>
-                    <label class='has-float-label my-auto'>
+                    </label> -->
+                    <p class="m-1">
+                        <input id="phone" type="tel" name="contact" required class="intlPhone"/>
+                    </p>
+                    <span class="formHeading">State<span class='text-danger'>*</span></span>
+                    <!-- <label class='has-float-label my-auto'>
                         <input class='form-control  my-2' name='city' type='text' placeholder='City' required />
                         <span>City</span>
-                    </label>
-                    <span class="formHeading">State<span class='text-danger'>*</span></span>
-                    <label class='has-float-label my-auto'>
+                    </label> -->
+                    <select onchange="print_city('state', this.selectedIndex);" id="sts" name="state" class="form-control" required></select>
+
+                    <span class="formHeading">City<span class='text-danger'>*</span></span>
+                    <!-- <label class='has-float-label my-auto'>
                         <input class='form-control  my-2' name='state' type='text' placeholder='State' required />
                         <span>State</span>
-                    </label>
+                    </label> -->
+                    <select id="state" class="form-control" name="city" required></select>
                     <div class="text-center p-4">
                         <button class='nextButton mx-auto' type="submit">Next</button>
                     </div>
+                
+                    
+                    <script language="javascript">print_state("sts");</script>
+
                 </form>
             </div>
 
-            <div id="divOuter" style="display: none;" class="w-100">
-                <div id="divInner" class="p-5">
-                    <input id="partitioned" type="text" maxlength="4"
-                        oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                        onKeyPress="if(this.value.length==4) return false;" />
-                </div>
-            </div>
         </div>
+        
         <script src="index.js"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
         </body>
     </body>
 </html>

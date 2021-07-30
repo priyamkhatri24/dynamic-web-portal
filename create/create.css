@@ -79,5 +79,51 @@ main {
   }
 }
 
-#color_picker {
+.nextButton {
+  background-color: var(--primary-blue, rgba(38, 153, 251, 1));
+  color: #fff;
+  font-family: 'Montserrat';
+  border-radius: 5px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border: none;
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+.uploadText {
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+
+#profilePic {
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+}
+
+.launchButton {
+  background-color: var(--primary-blue, rgba(38, 153, 251, 1));
+  color: #fff;
+  font-family: 'Montserrat';
+  border-radius: 5px;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  border: none;
+  margin-left: 5px;
+  font-size: 16px;
+}
+
+#suggestions > p {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  text-align: center;
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+
+.suggestion {
+  color: var(--primary-blue);
+  font-family: 'Montserrat';
+  margin: 1.5rem;
+  font-weight: 800;
 }

@@ -1,6 +1,14 @@
 const webForm = document.forms['webapp'];
 const url = 'https://class.ingeniumedu.com';
 let profilePic = '';
+
+const phoneInputField = document.querySelector('#phone');
+const phoneInput = window.intlTelInput(phoneInputField, {
+  preferredCountries: ['in', 'co', 'us', 'de'],
+  utilsScript:
+    'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
+});
+
 // bind the onsubmit property to a function to do some logic
 webForm.onsubmit = function (e) {
   e.preventDefault();
@@ -10,15 +18,17 @@ webForm.onsubmit = function (e) {
     console.log(x);
     formObj[x[0]] = x[1];
   }
+  formObj.country_code = phoneInput.getSelectedCountryData().dialCode;
+  formObj.profile_image = profilePic;
   console.log(formObj);
-  formObj.country_code = '91';
+  localStorage.setItem('form', JSON.stringify(formObj));
 
   const formBody = Object.keys(formObj)
     .map(
       (key) => encodeURIComponent(key) + '=' + encodeURIComponent(formObj[key])
     )
     .join('&');
-  fetch('https://portal.tca.ingeniumedu.com/enterNumberAndLoginClient', {
+  fetch(`${url}/enterNumberAndLoginClient`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
@@ -27,12 +37,15 @@ webForm.onsubmit = function (e) {
   })
     .then((res) => res.json())
     .then((res) => {
-      if (res.success) {
+      if (res.success && res.result.guest_client_id) {
         console.log(res);
         localStorage.setItem('sidhant', JSON.stringify(res.result));
         window.location.href = '/otp';
+      } else if (res.success) {
+        alert('You have already created an app with this number');
       }
-    });
+    })
+    .catch((err) => alert('Network error'));
 };
 
 function uploadFile(e) {
