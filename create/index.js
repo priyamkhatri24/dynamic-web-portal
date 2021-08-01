@@ -1,7 +1,7 @@
 let picker;
 let color = '#ffffff';
 const url = 'https://class.ingeniumedu.com';
-let clientLogo = '';
+let profilePic = '';
 const appModal = new bootstrap.Modal(document.getElementById('goToAppModal'), {
   keyboard: false,
 });
@@ -109,7 +109,18 @@ function uploadFile(e) {
       console.log(res);
       if (res.success) {
         document.getElementById('profilePic').src = res.filename;
-        clientLogo = res.filename;
+        profilePic = res.filename;
+        const cropperModal = new bootstrap.Modal(
+          document.getElementById('staticBackdrop'),
+          {
+            keyboard: false,
+          }
+        );
+
+        // const img = document.getElementById('profilePhoto');
+        // img.src = clientLogo;
+        cropperModal.show();
+        cropperStart(cropperModal);
       }
     });
 }
@@ -193,7 +204,7 @@ function createDomain() {
 
       const formObj = {
         domain_name: domain,
-        client_logo: clientLogo,
+        client_logo: profilePic,
         client_id: JSON.parse(localStorage.getItem('client_id')),
         color: finalColor,
       };
