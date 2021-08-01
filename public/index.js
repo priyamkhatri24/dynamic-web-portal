@@ -60,6 +60,17 @@ function uploadFile(e) {
       if (res.success) {
         document.getElementById('profilePic').src = res.filename;
         profilePic = res.filename;
+
+        const cropperModal = new bootstrap.Modal(
+          document.getElementById('staticBackdrop'),
+          {
+            keyboard: false,
+          }
+        );
+        const img = document.getElementById('profilePhoto');
+        img.src = profilePic;
+        cropperModal.show();
+        cropperStart(cropperModal);
       }
     });
 }

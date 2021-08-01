@@ -17,7 +17,7 @@
 
 <body>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+<div class="modal fade" id="goToAppModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -33,6 +33,29 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="mobileButton" onclick="goToApp()">Ok, Copy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="destroyCropper()"></button>
+            </div>
+            <div class="modal-body">
+                <div id='profilePhoto'></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    onclick="destroyCropper()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="cropDone()">Crop</button>
             </div>
         </div>
     </div>
@@ -87,7 +110,7 @@
         </div>
     </main>
     <div class="d-flex justify-content-center m-5">
-    <button id='launchButton' class="launchButton d-flex" data-toggle="modal" data-target="#exampleModalCenter" onclick="createDomain()">Launch App Now</button>
+    <button id='launchButton' class="launchButton d-flex" onclick="createDomain()">Launch App Now</button>
     </div>
     <script async src="index.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -99,6 +122,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script async src="croppie.min.js"></script>
+        <script async src="hamaraCropper.js"></script>
 </body>
 
 </html>

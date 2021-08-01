@@ -2,6 +2,9 @@ let picker;
 let color = '#ffffff';
 const url = 'https://class.ingeniumedu.com';
 let clientLogo = '';
+const appModal = new bootstrap.Modal(document.getElementById('goToAppModal'), {
+  keyboard: false,
+});
 
 const mobileSpan = document.getElementById('mobile');
 const mobileNum = JSON.parse(localStorage.getItem('form')).contact;
@@ -40,49 +43,59 @@ window.onload = function () {
   updateColor(color);
 };
 
-function verifyDomain() {
-  const domain = document.getElementById('domainName').value;
-  const suggestionDiv = document.getElementById('suggestions');
+function asyncVerify() {
+  return new Promise((resolve, rej) => {
+    const domain = document.getElementById('domainName').value;
+    const suggestionDiv = document.getElementById('suggestions');
 
-  const suggestPara = document.getElementById('suggestText');
-  if (suggestPara) {
-    suggestPara.parentNode.removeChild(suggestPara);
-  }
+    const suggestPara = document.getElementById('suggestText');
+    if (suggestPara) {
+      suggestPara.parentNode.removeChild(suggestPara);
+    }
 
-  const suggestList = document.getElementById('suggestList');
+    const suggestList = document.getElementById('suggestList');
 
-  if (suggestList) {
-    suggestList.parentNode.removeChild(suggestList);
-  }
+    if (suggestList) {
+      suggestList.parentNode.removeChild(suggestList);
+    }
 
-  fetch(`${url}/checkDomainAvailability?name=${domain}`)
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.status === 'domain available') {
-        document.getElementById('noDomain').style.display = 'none';
-        document.getElementById('availableDomain').style.display = 'block';
-      } else {
-        document.getElementById('noDomain').style.display = 'block';
-        document.getElementById('availableDomain').style.display = 'none';
-        const para = document.createElement('p');
-        para.id = 'suggestText';
-        para.innerText = 'Try the below suggestions';
-        suggestionDiv.appendChild(para);
-        const list = document.createElement('ul');
-        list.id = 'suggestList';
-        suggestionDiv.appendChild(list);
-        console.log(res.suggested_domains);
-        res.suggested_domains.forEach((element) => {
-          const suggestion = document.createElement('li');
-          suggestion.className = 'suggestion';
-          suggestion.innerText = element;
-          suggestion.addEventListener('click', () => {
-            document.getElementById('domainName').value = element.split('.')[0];
+    fetch(`${url}/checkDomainAvailability?name=${domain}`)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 'domain available') {
+          document.getElementById('noDomain').style.display = 'none';
+          document.getElementById('availableDomain').style.display = 'block';
+          resolve('success');
+        } else {
+          document.getElementById('noDomain').style.display = 'block';
+          document.getElementById('availableDomain').style.display = 'none';
+          const para = document.createElement('p');
+          para.id = 'suggestText';
+          para.innerText = 'Try the below suggestions';
+          suggestionDiv.appendChild(para);
+          const list = document.createElement('ul');
+          list.id = 'suggestList';
+          suggestionDiv.appendChild(list);
+          console.log(res.suggested_domains);
+          res.suggested_domains.forEach((element) => {
+            const suggestion = document.createElement('li');
+            suggestion.className = 'suggestion';
+            suggestion.innerText = element;
+            suggestion.addEventListener('click', () => {
+              document.getElementById('domainName').value =
+                element.split('.')[0];
+            });
+            list.appendChild(suggestion);
           });
-          list.appendChild(suggestion);
-        });
-      }
-    });
+          resolve('success');
+        }
+      })
+      .catch((err) => rej(err));
+  });
+}
+
+function verifyDomain() {
+  asyncVerify().then((res) => console.log(res));
 }
 
 function uploadFile(e) {
@@ -166,35 +179,44 @@ function RGBToHSL(r, g, b) {
 }
 
 function createDomain() {
-  const domain = `${
-    document.getElementById('domainName').value
-  }.ingeniumedu.com`;
+  asyncVerify().then((res) => {
+    console.log(document.getElementById('noDomain').style.display);
+    if (document.getElementById('noDomain').style.display === 'block') {
+      return;
+    } else {
+      const domain = `${
+        document.getElementById('domainName').value
+      }.ingeniumedu.com`;
 
-  const [r, g, b, a] = hexAToRGBA(color);
-  const finalColor = RGBToHSL(r, g, b);
+      const [r, g, b, a] = hexAToRGBA(color);
+      const finalColor = RGBToHSL(r, g, b);
 
-  const formObj = {
-    domain_name: domain,
-    client_logo: clientLogo,
-    client_id: JSON.parse(localStorage.getItem('client_id')),
-    color: finalColor,
-  };
-  const formBody = Object.keys(formObj)
-    .map(
-      (key) => encodeURIComponent(key) + '=' + encodeURIComponent(formObj[key])
-    )
-    .join('&');
-  fetch(`${url}/setDomainNameAndColor`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    },
-    body: formBody,
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res);
-    });
+      const formObj = {
+        domain_name: domain,
+        client_logo: clientLogo,
+        client_id: JSON.parse(localStorage.getItem('client_id')),
+        color: finalColor,
+      };
+      const formBody = Object.keys(formObj)
+        .map(
+          (key) =>
+            encodeURIComponent(key) + '=' + encodeURIComponent(formObj[key])
+        )
+        .join('&');
+      fetch(`${url}/setDomainNameAndColor`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        },
+        body: formBody,
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          appModal.show();
+        });
+    }
+  });
 }
 
 async function goToApp() {
