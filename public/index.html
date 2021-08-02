@@ -59,32 +59,22 @@
                         <span>Email Address</span>
                     </label>
                     <span class="formHeading">Mobile Number<span class='text-danger'>*</span></span>
-                    <!-- <label class='has-float-label my-auto'>
-                        <input class='form-control  my-2' name='contact' type='number' placeholder='Mobile Number' required/>
-                        <span>Mobile Number</span>
-                    </label> -->
                     <p class="m-1">
                         <input id="phone" type="tel" name="contact" required class="intlPhone"/>
                     </p>
+                    <span class="formHeading">Country<span class='text-danger'>*</span></span>
+                    <select onchange="print_state('state', this.value);" id="country" name="country" class="form-control"
+                        required></select>
                     <span class="formHeading">State<span class='text-danger'>*</span></span>
-                    <!-- <label class='has-float-label my-auto'>
-                        <input class='form-control  my-2' name='city' type='text' placeholder='City' required />
-                        <span>City</span>
-                    </label> -->
-                    <select onchange="print_city('state', this.selectedIndex);" id="sts" name="state" class="form-control" required></select>
-
+                    <select onchange="print_city('city', this.value);" id="state" name="state" class="form-control" required></select>
                     <span class="formHeading">City<span class='text-danger'>*</span></span>
-                    <!-- <label class='has-float-label my-auto'>
-                        <input class='form-control  my-2' name='state' type='text' placeholder='State' required />
-                        <span>State</span>
-                    </label> -->
-                    <select id="state" class="form-control" name="city" required></select>
+                    <select id="city" class="form-control" name="city" required></select>
                     <div class="text-center p-4">
                         <button class='nextButton mx-auto' type="submit">Next</button>
                     </div>
                 
                     
-                    <script language="javascript">print_state("sts");</script>
+                    <!-- <script language="javascript">print_state("sts");</script> -->
 
                 </form>
             </div>

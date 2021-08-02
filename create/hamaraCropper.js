@@ -16,10 +16,7 @@ function cropperStart(modal) {
 }
 
 function destroyCropper() {
-  if (vanilla) {
-    vanilla.destroy();
-    console.log(vanilla);
-  }
+  cropModal.hide();
 }
 
 function uploadFiles(e) {
@@ -40,11 +37,8 @@ function uploadFiles(e) {
 
 function cropDone() {
   vanilla.result('blob').then(function (blob) {
-    // do something with cropped blob
-    console.log(blob);
     const name = new Date().getTime() * Math.floor(Math.random() * 100);
     const file = new File([blob], `name.png`);
-
     uploadFiles(file);
   });
 }
