@@ -1,103 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type="text/css" href="create.css" />
-    <link rel="stylesheet" href="./croppie.css">
-    <link rel = 'stylesheet' type='text/css' href="https://rawcdn.githack.com/easylogic/colorpicker/main/dist/EasyLogicColorPicker.css" />
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="create.css" />
+    <link rel="stylesheet" href="./croppie.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://rawcdn.githack.com/easylogic/colorpicker/main/dist/EasyLogicColorPicker.css"
+    />
     <script src="https://rawcdn.githack.com/easylogic/colorpicker/06bd4889077a38a0eff61673a167345be1724acd/dist/EasyLogicColorPicker.js"></script>
     <title>Create Domain</title>
+  </head>
 
-</head>
-
-<body>
-<!-- Modal -->
-<div class="modal fade" id="goToAppModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+  <body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="goToAppModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Success!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Please use your registered mobile number <span id="mobile"></span> to signup. As you can only access super admin functionality with this number. 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="mobileButton" onclick="goToApp()">Ok, Copy</button>
-            </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Success!</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Please use your registered mobile number
+            <span id="mobile"></span> to signup. As you can only access super
+            admin functionality with this number.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="mobileButton"
+              onclick="goToApp()"
+            >
+              Ok, Copy
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<!-- Modal -->
+    <!-- Modal -->
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                    onclick="destroyCropper()"></button>
-            </div>
-            <div class="modal-body">
-                <div id='profilePhoto'></div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                    onclick="destroyCropper()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="cropDone()">Crop</button>
-            </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onclick="destroyCropper()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="profilePhoto"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              onclick="destroyCropper()"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" onclick="cropDone()">
+              Crop
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
     <section>
-      
-        <h3 class='text-center my-4 heading'>Select Your Domain</h3>
-      
-        <div class='d-flex text-center mx-5 my-3'>
-            <label htmlFor='file-input'>
-                <img src='./user.svg' alt='upload your profile pic' class='profile' id='profilePic' />
-                <input id='file-input' style='display: none;' type='file' accept='image/*' onchange="uploadFile(this)" />
-            </label>
-            <span class='ml-3 uploadText my-auto'>Add A Logo</span>
-        </div>
-        <h6 class="text-center my-4">Enter a web address</h6>
-        <div class="input-group mb-3 mx-auto w-75">
-            <input type="text" class="form-control" placeholder="Name" aria-label="Name"
-                aria-describedby="basic-addon2" id='domainName'>
-            <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">.ingeniumedu.com</span>
-            </div>
-        <button onclick="verifyDomain()" class="nextButton">Verify</button>
+      <h3 class="text-center my-4 heading">Select Your Domain</h3>
+      <canvas id="canvas" width="60" height="60" style="display: none"></canvas>
+      <div class="d-flex text-center mx-5 my-3">
+        <label id="file-input" htmlFor="file-input">
+          <!-- <img
+            src="./user.svg"
+            alt="upload your profile pic"
+            class="profile"
+            id="profilePic"
+          /> -->
 
+          <input
+            id="file-input"
+            style="display: none"
+            type="file"
+            accept="image/*"
+            onchange="uploadFile(this)"
+          />
+        </label>
+        <span class="ml-3 uploadText my-auto">Add A Logo</span>
+      </div>
+      <h6 class="text-center my-4">Enter a web address</h6>
+      <div class="input-group mb-3 mx-auto w-75">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          aria-label="Name"
+          aria-describedby="basic-addon2"
+          id="domainName"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2"
+            >.ingeniumedu.com</span
+          >
         </div>
-    <small class="text-success text-center" id='availableDomain' style="display: none;">This Domain is available!</small>
-    <small class="text-danger text-center" id='noDomain' style="display: none;">Oops! This domain is taken.</small>
-    <div id='suggestions'></div>
+        <button onclick="verifyDomain()" class="nextButton">Verify</button>
+      </div>
+      <small
+        class="text-success text-center"
+        id="availableDomain"
+        style="display: none"
+        >This Domain is available!</small
+      >
+      <small class="text-danger text-center" id="noDomain" style="display: none"
+        >Oops! This domain is taken.</small
+      >
+      <div id="suggestions"></div>
     </section>
-<main>
-        <h3 class='text-center my-4 heading'>Choose Theme Color</h3>
-        <div class="wrap">
-            <div class="body">
-                <div id="color_picker"></div>
-                <p class="sample mt-4 mt-md-0 ml-0 ml-md-5" >
-                    <i class="sample__color"></i>
-                    <em class="sample__code"></em>
-                </p>
-            </div>
-            <!-- <nav class="controller">
+    <main id="main">
+      <h3 class="text-center my-4 heading">Choose Theme Color</h3>
+      <div class="wrap">
+        <div class="body">
+          <div id="color_picker"></div>
+          <p class="sample mt-4 mt-md-0 ml-0 ml-md-5">
+            <i class="sample__color"></i>
+            <em class="sample__code"></em>
+          </p>
+        </div>
+        <!-- <nav class="controller">
                 <label>
                     <span>Type: </span>
                     <select onchange="onChangeType(this)">
@@ -109,23 +191,34 @@
                     </select>
                 </label>
             </nav> -->
-        </div>
+      </div>
     </main>
     <div class="d-flex justify-content-center m-5">
-    <button id='launchButton' class="launchButton d-flex" onclick="createDomain()">Launch App Now</button>
+      <button
+        id="launchButton"
+        class="launchButton d-flex"
+        onclick="createDomain()"
+      >
+        Launch App Now
+      </button>
     </div>
     <script async src="index.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-        <script async src="croppie.min.js"></script>
-        <script async src="hamaraCropper.js"></script>
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script async src="croppie.min.js"></script>
+    <script async src="hamaraCropper.js"></script>
+  </body>
 </html>
