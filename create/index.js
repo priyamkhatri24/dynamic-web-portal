@@ -40,6 +40,7 @@ function onChangeType(e) {
 window.onload = function () {
   initPicker();
   updateColor(color);
+  uploadCanvasLogo(pnGImage);
 };
 
 function asyncVerify() {
@@ -325,7 +326,7 @@ drawStroked(
   35,
   "#000",
   canvas.width / 2,
-  canvas.height / 2,
+  canvas.height / 2 + 2,
   0.9,
   [2, 4, 8, 12]
 );
@@ -342,5 +343,3 @@ pnGImage.classList.add("profile");
 pnGImage.alt = "upload your profile pic";
 
 const fileInput = document.getElementById("file-input").appendChild(pnGImage);
-
-uploadCanvasLogo(pnGImage);
