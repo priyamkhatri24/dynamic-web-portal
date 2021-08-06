@@ -17,13 +17,19 @@ body {
   color: var(--primary-blue);
 }
 
-main {
+.color_container {
+  width: 90%;
+  margin: auto;
+}
+
+.cLists {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
+  width: 50%;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
   font-family: sans-serif;
+  margin: auto;
 }
 .wrap {
   padding: 20px;
@@ -91,9 +97,17 @@ main {
   font-size: 10px;
 }
 
+.main {
+  width: 90%;
+  margin: auto;
+}
+
 .uploadText {
   font-family: "Montserrat";
   font-weight: 600;
+}
+.blue {
+  color: #00a0d1;
 }
 
 #profilePic {
@@ -112,7 +126,12 @@ main {
   margin-left: 5px;
   font-size: 16px;
 }
-
+.launchButton:disabled {
+  background-color: gray;
+}
+.borderClipper {
+  border-radius: 50px;
+}
 #suggestions > p {
   font-family: "Montserrat";
   font-weight: 700;
@@ -133,4 +152,120 @@ main {
   border-radius: 100px;
   display: flex;
   align-items: center;
+}
+#file-input {
+  border-radius: 10px !important;
+}
+
+.barContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  margin: 20px auto;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: rgba(173, 173, 173, 0.65);
+  border-radius: 10px;
+  margin: 15px auto;
+  border-radius: 100px;
+}
+
+#myBar {
+  width: 100%;
+  height: 15px;
+  border-radius: 100px;
+  background-color: #00a0d1;
+}
+
+.logoImage {
+  width: 25%;
+  margin: 20px 0px;
+}
+
+.input-group-append span {
+  background-color: #00a0d1 !important;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .logoImage {
+    width: 35%;
+  }
+}
+
+.input-group-text {
+  font-size: 15px;
+}
+
+.grayText {
+  color: rgb(136, 136, 136);
+}
+
+.formContainer label span {
+  font-weight: lighter;
+}
+
+.domainCheckContainer {
+  list-style: none;
+  padding-left: 5px;
+}
+
+.greenBullet {
+  color: rgb(0, 158, 0);
+}
+
+.grayBullet {
+  color: gray;
+}
+
+.redBullet {
+  color: red;
+}
+
+.otherSuggestions {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 10px;
+  margin: auto;
+  padding: 10px 20px;
+}
+
+.colorList {
+  list-style: none;
+}
+
+.colorList ion-icon {
+  font-size: 30px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.mobileLeft {
+  text-align: center;
+}
+
+.selectedColor {
+  font-size: 80px;
+  margin: auto;
+}
+.selectedColorContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  margin: auto;
+}
+@media screen and (max-width: 500px) {
+  .mobileLeft {
+    text-align: left;
+  }
+  .cLists {
+    justify-content: space-between;
+    width: 100%;
+  }
 }

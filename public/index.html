@@ -26,50 +26,58 @@
     <body>
 
         <div id='root' class='container'>
-            <h3 class='text-center my-4 heading'>Create Your WebApp</h3>
-
+            <!-- <h3 class='text-center my-4 heading'>Create Your WebApp</h3> -->
+            <img class='logoImage' src="../assets/ingiLOGO.png">
+            <div id="myProgress">
+                <div id="myBar"></div>
+              </div>
             <div id='formPage'>
-                <div class='d-flex text-center'>
+                <p class='formSubHeading'>Basic Info</p>
+
+                <div class='profileContainer'>
                     <label htmlFor='file-input'>
                         <img src='./user.svg' alt='upload your profile pic' class='profile' height="60" id='profilePic'/>
                         <input id='file-input' type='file' accept='image/*'  onchange="uploadFile(this)"/>
                     </label>
-                    <span class='ml-3 my-auto uploadText'>Upload Profile Picture</span>
+                    <span class='my-auto uploadText'>Upload Profile Picture (optional)</span>
                 </div>
-                <small style="font-family: 'Montserrat';">All fields marked as <span class="text-danger">*</span> are required.</small>
-                <form class='mt-1' name='webapp'>
-                    <span class="formHeading">Name<span class='text-danger'>*</span></span>
+                <!-- <small style="font-family: 'Montserrat';">All fields marked as <span class="text-danger">*</span> are required.</small> -->
+                <form class='mt-1 formContainer' name='webapp'>
+                    <!-- <span class="formHeading">Name<span class='text-danger'>*</span></span> -->
                     <label class='has-float-label my-auto'>
                         <input class='form-control  my-2' name='admin_name' type='text' placeholder='Name' required />
                         <span>Name</span>
                     </label>
-                    <span class="formHeading">Institute Name<span class='text-danger'>*</span></span>
+                    <!-- <span class="formHeading">Institute Name<span class='text-danger'>*</span></span> -->
                     <label class='has-float-label my-auto'>
                         <input class='form-control my-2' name='client_name' type='text' placeholder='Institute Name' required/>
                         <span>Institute Name</span>
                     </label>
-                    <span class="formHeading">Tagline</span>
+                    <!-- <span class="formHeading">Tagline</span> -->
                     <label class='has-float-label my-auto'>
                         <input class='form-control  my-2' name='tagline' type='text' placeholder='Tagline' />
                         <span>Tagline</span>
                     </label>
-                    <span class="formHeading">Email Address<span class='text-danger'>*</span></span>
+                    <p class='formSubHeading'>Contact Info</p>
+
+                    <!-- <span class="formHeading">Country<span class='text-danger'>*</span></span> -->
+                    <select onchange="print_state('state', this.value);" id="country" name="country" class="form-control" required
+                        ><option value="">Select Country</option></select>
+                    <!-- <span class="formHeading">State<span class='text-danger'>*</span></span> -->
+                    <select onchange="print_city('city', this.value);" id="state" name="state" class="form-control" required ><option value="">Select State</option></select>
+                    <!-- <span class="formHeading">City<span class='text-danger'>*</span></span> -->
+                    <select id="city" class="form-control" name="city" required><option value="">Select City</option></select>
+                    <!-- <span class="formHeading">Email Address<span class='text-danger'>*</span></span> -->
                     <label class='has-float-label my-auto'>
                         <input class='form-control  my-2' name='email' type='text' placeholder='Email Address' required/>
                         <span>Email Address</span>
                     </label>
-                    <span class="formHeading">Mobile Number<span class='text-danger'>*</span></span>
-                    <p class="m-1">
-                        <input id="phone" type="tel" name="contact" required class="intlPhone"/>
+                    <!-- <span class="formHeading">Mobile Number<span class='text-danger'>*</span></span> -->
+                    <p class="">
+                        <input id="phone" placeholder="Mobile Number" type="tel" name="contact" required class="intlPhone"/>
                     </p>
-                    <span class="formHeading">Country<span class='text-danger'>*</span></span>
-                    <select onchange="print_state('state', this.value);" id="country" name="country" class="form-control"
-                        ></select>
-                    <span class="formHeading">State<span class='text-danger'>*</span></span>
-                    <select onchange="print_city('city', this.value);" id="state" name="state" class="form-control" ></select>
-                    <span class="formHeading">City<span class='text-danger'>*</span></span>
-                    <select id="city" class="form-control" name="city" ></select>
-                    <div class="text-center p-4">
+                   
+                    <div class="text-center btn">
                         <button class='nextButton mx-auto' type="submit">Next</button>
                     </div>
                 

@@ -1,6 +1,6 @@
 let picker;
 let color = "#ffffff";
-const url = "https://class.ingeniumedu.com";
+const url = "https://portal.tca.ingeniumedu.com";
 let profilePic = "";
 const appModal = new bootstrap.Modal(document.getElementById("goToAppModal"), {
   keyboard: false,
@@ -10,38 +10,156 @@ const mobileNum = JSON.parse(localStorage.getItem("form")).contact;
 mobileSpan.innerText = `(${mobileNum})`;
 const mobileButton = document.getElementById("mobileButton");
 mobileButton.innerText = `OK, Copy ${mobileNum}`;
+const domainInput = document.getElementById("domainName");
 
-const defaults = {
-  color: color,
-  container: document.getElementById("color_picker"),
-  onChange: function (color) {
-    updateColor(color);
-  },
-  swatchColors: ["#D1BF91", "#60371E", "#A6341B", "#F9C743", "#C7C8C4"],
+const themeColors = [
+  "#00B4D8",
+  "#0096C7",
+  "#0077B6",
+  "#023E8A",
+  "#80B918",
+  "#55A630",
+  "#2B9348",
+  "#007F5F",
+  "#52B788",
+  "#40916C",
+  "#2D6A4F",
+  "#1B4332",
+  "#E85D04",
+  "#D00000",
+  "#9D0208",
+  "#6A040F",
+  "#FF4D6D",
+  "#C9184A",
+  "#A4133C",
+  "#800F2F",
+  "#FFE169",
+  "#EDC531",
+  "#C9A227",
+  "#A47E1B",
+  "#7209B7",
+  "#560BAD",
+  "#480CA8",
+  "#3A0CA3",
+];
+const fillInstituteInfo = () => {
+  document.querySelector(".client_name").value = JSON.parse(
+    localStorage.getItem("form")
+  ).client_name;
+  document.querySelector(".tagline").value = JSON.parse(
+    localStorage.getItem("form")
+  ).tagline;
 };
 
-function initPicker(options) {
-  options = Object.assign(defaults, options);
-  picker = new EasyLogicColorPicker(options);
+const generateOtherSuggestions = () => {
+  const first = `<p class='blue'>${
+    instituteName.split(" ").join("-") + ".ingeniumedu.com"
+  }</p>`;
+  const sec = `<p class='blue'>${
+    instituteName.split(" ").join("_") + ".ingeniumedu.com"
+  }</p>`;
+  const third = `<p class='blue'>${
+    instituteName.split(" ").join("") + "1.ingeniumedu.com"
+  }</p>`;
+  document
+    .querySelector(".otherSuggestions")
+    .insertAdjacentHTML("beforeend", first);
+  document
+    .querySelector(".otherSuggestions")
+    .insertAdjacentHTML("beforeend", sec);
+  document
+    .querySelector(".otherSuggestions")
+    .insertAdjacentHTML("beforeend", third);
+};
+
+function initColorPallete() {
+  const palletArr = [...document.querySelectorAll(".colorIcon")];
+  palletArr.forEach((elem, i) => {
+    elem.style.color = themeColors[i] || "gray";
+  });
 }
 
-function updateColor(value) {
-  color = value;
-  const $color = document.querySelector(".sample__color");
-  const $code = document.querySelector(".sample__code");
-  $code.innerText = color;
-  $color.style.setProperty("--color", color);
-}
+document
+  .querySelector(".color_container")
+  .addEventListener("click", function (e) {
+    const icon = e.target.closest(".colorIcon");
+    if (!icon) return;
+
+    color = icon.style.color;
+    document.querySelector(".selectedColor").style.color = color;
+
+    // document.querySelector(".selectedColorHex").textContent = newC;
+  });
 
 function onChangeType(e) {
   picker.setType(e.value);
 }
 
 window.onload = function () {
-  initPicker();
-  updateColor(color);
+  initColorPallete();
+  // updateColor(color);
+  fillInstituteInfo();
+  checkDomainValidity(domainInput.value);
   uploadCanvasLogo(pnGImage);
+  generateOtherSuggestions();
 };
+
+const checkDomainValidity = (domain) => {
+  const list = [
+    ...document
+      .querySelector(".domainCheckContainer")
+      .getElementsByTagName("li"),
+  ];
+  if (domain.length > 3) {
+    list[0].childNodes[0].classList.add("greenBullet");
+    list[0].childNodes[0].classList.remove("redBullet");
+  } else {
+    list[0].childNodes[0].classList.add("redBullet");
+    list[0].childNodes[0].classList.remove("greenBullet");
+  }
+
+  if (domain.length < 22) {
+    list[3].childNodes[0].classList.add("greenBullet");
+    list[3].childNodes[0].classList.remove("redBullet");
+  } else {
+    list[3].childNodes[0].classList.add("redBullet");
+    list[3].childNodes[0].classList.remove("greenBullet");
+  }
+
+  if (domain.includes(" ")) {
+    list[1].childNodes[0].classList.add("redBullet");
+    list[1].childNodes[0].classList.remove("greenBullet");
+  } else {
+    list[1].childNodes[0].classList.add("greenBullet");
+    list[1].childNodes[0].classList.remove("redBullet");
+  }
+
+  if (domain.match(/^[a-z0-9]+$/i)) {
+    list[2].childNodes[0].classList.add("greenBullet");
+    list[2].childNodes[0].classList.remove("redBullet");
+  } else {
+    list[2].childNodes[0].classList.add("redBullet");
+    list[2].childNodes[0].classList.remove("greenBullet");
+  }
+};
+
+const checkLaunchButton = () => {
+  const list = [
+    ...document
+      .querySelector(".domainCheckContainer")
+      .getElementsByTagName("li"),
+  ];
+  const validityArr = list.filter((ele) => {
+    return [...ele.childNodes[0].classList].includes("redBullet");
+  });
+  document.querySelector(".launchButton").disabled = validityArr.length;
+};
+
+domainInput.addEventListener("keyup", function (e) {
+  domainInput.value = e.target.value;
+  checkDomainValidity(e.target.value);
+  checkLaunchButton();
+});
 
 function asyncVerify() {
   return new Promise((resolve, rej) => {
@@ -100,8 +218,15 @@ function verifyDomain() {
 }
 
 function uploadCanvasLogo(img) {
-  const file = new File([img], "defaultLogo.png");
-  const fd = new FormData();
+  var blobBin = atob(img.src.split(",")[1]);
+  var array = [];
+  for (var i = 0; i < blobBin.length; i++) {
+    array.push(blobBin.charCodeAt(i));
+  }
+  var file = new File([new Uint8Array(array)], "defaultLogo.png");
+
+  var fd = new FormData();
+
   fd.append("upl", file);
   fetch(`${url}/upload`, { method: "POST", body: fd })
     .then((res) => res.json())
@@ -112,11 +237,11 @@ function uploadCanvasLogo(img) {
 }
 
 function uploadFile(e) {
-  console.log(e.files[0]);
+  console.log(e.files[0], "e");
   const file = e.files[0];
   const fd = new FormData();
   fd.append("upl", file);
-
+  console.log(fd, "fd");
   fetch(`${url}/upload`, { method: "POST", body: fd })
     .then((res) => res.json())
     .then((res) => {
@@ -212,8 +337,9 @@ function createDomain() {
       const domain = `${
         document.getElementById("domainName").value
       }.ingeniumedu.com`;
-
-      const [r, g, b, a] = hexAToRGBA(color);
+      // const [r, g, b, a] = hexAToRGBA("#555");
+      color = color.replace("rgb(", "").replace(")", "");
+      const [r, g, b] = color.split(",");
       const finalColor = RGBToHSL(r, g, b);
 
       const formObj = {
@@ -280,7 +406,7 @@ function drawStroked(
   fade
 ) {
   let line = text.split("\n");
-  ctx.font = fontSize + "px " + "Arial";
+  ctx.font = fontSize + "px " + "Montserrat";
   ctx.strokeStyle = color;
   ctx.lineWidth = 2;
   ctx.textBaseline = "middle";
@@ -322,11 +448,11 @@ function drawStroked(
 }
 
 drawStroked(
-  instituteInitials,
-  35,
+  instituteInitials.slice(0, 2),
+  280,
   "#000",
   canvas.width / 2,
-  canvas.height / 2 + 2,
+  canvas.height / 2 + 10,
   0.9,
   [2, 4, 8, 12]
 );
@@ -342,4 +468,12 @@ pnGImage.id = "profilePic";
 pnGImage.classList.add("profile");
 pnGImage.alt = "upload your profile pic";
 
-const fileInput = document.getElementById("file-input").appendChild(pnGImage);
+document.getElementById("file-input").appendChild(pnGImage);
+
+///////////////////////////////////////autofill domain///////////////////////////////////
+const domain = instituteName
+  .split(" ")
+  .map((ele) => ele.toLowerCase())
+  .join("");
+
+document.getElementById("domainName").value = domain;

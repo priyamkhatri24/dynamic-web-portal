@@ -1,12 +1,12 @@
 :root {
-  --primary-blue: rgba(38, 153, 251, 1);
+  --primary-blue: #00a0d1;
   --lighter-blue: rgba(127, 196, 253, 1);
   --lightest-blue: rgba(188, 224, 253, 1);
   --superlight-blue: rgba(241, 249, 255, 1);
 }
 
 .heading {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 900;
   color: var(--primary-blue);
 }
@@ -16,19 +16,25 @@
 }
 
 .uploadText {
-  font-family: 'Montserrat';
-  font-weight: 600;
+  font-family: "Montserrat";
+  font-weight: 100;
+}
+
+.profileContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .formHeading {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 500;
+  margin-bottom: 30px;
 }
 
 .nextButton {
   background-color: var(--primary-blue, rgba(38, 153, 251, 1));
   color: #fff;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   border-radius: 50px;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -66,24 +72,83 @@
   overflow: hidden;
 }
 
-.has-float-label input[type='text']:focus:invalid {
+.has-float-label input[type="text"]:focus:invalid {
   border: 1px solid red;
 }
 
+.formContainer label span {
+  font-weight: lighter;
+}
+
 .intlPhone::placeholder {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 600;
 }
 
 .intlPhone {
   width: 100%;
   border-radius: 5px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 600;
   border-color: 1px solid rgba(0, 0, 0, 0.54);
+  z-index: 10;
+}
+
+.logoImage {
+  width: 25%;
+  margin: 20px auto;
 }
 
 .iti {
   width: 100%;
   border-radius: 5px;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: rgba(173, 173, 173, 0.65);
+  border-radius: 10px;
+  margin: 15px auto;
+  border-radius: 100px;
+}
+
+#myBar {
+  width: 33%;
+  height: 15px;
+  border-radius: 100px;
+  background-color: #00a0d1;
+}
+
+.container {
+  animation-duration: 1s;
+  animation-name: slidein;
+  position: relative;
+}
+
+select {
+  margin: 10px auto;
+}
+
+.formSubHeading {
+  font: "Montserrat";
+  margin-top: 35px;
+  color: rgb(48, 48, 48);
+}
+
+.btn {
+  width: 100%;
+  padding: 0px;
+}
+
+.nextButton {
+  width: 100%;
+  border-radius: 5px;
+  margin: 30px auto;
+  box-shadow: 0px 5px 10px 0px #00a0d170;
+}
+
+@media screen and (max-width: 800px) {
+  .logoImage {
+    width: 35%;
+  }
 }

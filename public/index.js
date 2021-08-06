@@ -1,12 +1,17 @@
-const webForm = document.forms['webapp'];
-const url = 'https://class.ingeniumedu.com';
-let profilePic = '';
+const evType = window.performance.getEntriesByType("navigation")[0].type;
+if (evType == "reload") {
+  // window.location.replace("/");
+  console.log("event ");
+}
+const webForm = document.forms["webapp"];
+const url = "https://portal.tca.ingeniumedu.com";
+let profilePic = "";
 
-const phoneInputField = document.querySelector('#phone');
+const phoneInputField = document.querySelector("#phone");
 const phoneInput = window.intlTelInput(phoneInputField, {
-  preferredCountries: ['in', 'co', 'us', 'de'],
+  preferredCountries: ["in", "co", "us", "de"],
   utilsScript:
-    'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js',
+    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 });
 
 // bind the onsubmit property to a function to do some logic
@@ -21,17 +26,17 @@ webForm.onsubmit = function (e) {
   formObj.country_code = phoneInput.getSelectedCountryData().dialCode;
   formObj.profile_image = profilePic;
   console.log(formObj);
-  localStorage.setItem('form', JSON.stringify(formObj));
+  localStorage.setItem("form", JSON.stringify(formObj));
 
   const formBody = Object.keys(formObj)
     .map(
-      (key) => encodeURIComponent(key) + '=' + encodeURIComponent(formObj[key])
+      (key) => encodeURIComponent(key) + "=" + encodeURIComponent(formObj[key])
     )
-    .join('&');
+    .join("&");
   fetch(`${url}/enterNumberAndLoginClient`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
     },
     body: formBody,
   })
@@ -39,35 +44,35 @@ webForm.onsubmit = function (e) {
     .then((res) => {
       if (res.success && res.result.guest_client_id) {
         console.log(res);
-        localStorage.setItem('sidhant', JSON.stringify(res.result));
-        window.location.href = '/otp';
+        localStorage.setItem("sidhant", JSON.stringify(res.result));
+        window.location.href = "/otp";
       } else if (res.success) {
-        alert('You have already created an app with this number');
+        alert("You have already created an app with this number");
       }
     })
-    .catch((err) => alert('Network error'));
+    .catch((err) => alert("Network error"));
 };
 
 function uploadFile(e) {
   console.log(e.files[0]);
   const file = e.files[0];
   const fd = new FormData();
-  fd.append('upl', file);
-  fetch(`${url}/upload`, { method: 'POST', body: fd })
+  fd.append("upl", file);
+  fetch(`${url}/upload`, { method: "POST", body: fd })
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
       if (res.success) {
-        document.getElementById('profilePic').src = res.filename;
+        document.getElementById("profilePic").src = res.filename;
         profilePic = res.filename;
 
         const cropperModal = new bootstrap.Modal(
-          document.getElementById('staticBackdrop'),
+          document.getElementById("staticBackdrop"),
           {
             keyboard: false,
           }
         );
-        const img = document.getElementById('profilePhoto');
+        const img = document.getElementById("profilePhoto");
         img.src = profilePic;
         cropperModal.show();
         cropperStart(cropperModal);

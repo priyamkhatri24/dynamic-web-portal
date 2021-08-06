@@ -1,25 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel='stylesheet' type="text/css" href="otp.css"/>
-        <title>Enter OTP</title>
-    </head>
-    <body>
-        <div class="otpContainer">
-            <h1 style="font-family: 'Montserrat';" class="OtpHeading">Enter OTP</h1>
-            <div class="userInput">
-                <input type="number" id='ist' maxlength="1" onkeyup="clickEvent(this,'sec')" >
-                <input type="number" id="sec" maxlength="1" onkeyup="clickEvent(this,'third')" onkeydown="goBack(this,'ist')">
-                <input type="number" id="third" maxlength="1" onkeyup="clickEvent(this,'fourth')" onkeydown="goBack(this,'sec')">
-                <input type="number" id="fourth" maxlength="1" onkeydown="goBack(this,'third')">
-            </div>
-           <button id='confirmButton'>CONFIRM</button> 
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="otp.css" />
+    <title>Enter OTP</title>
+  </head>
+  <body>
+    <div class="otpContainer">
+      <div class="barContainer">
+        <img class="logoImage" src="../assets/ingiLOGO.png" />
+        <div id="myProgress">
+          <div id="myBar"></div>
         </div>
-        <script async src="index.js"></script>
-    </body>
+      </div>
+
+      <h2 style="font-family: 'Montserrat'" class="OtpHeading">
+        Enter the 4-digit OTP we have sent you on
+      </h2>
+      <h1 style="font-family: 'Montserrat'" class="OtpNumber">---</h1>
+      <div class="userInput">
+        <input
+          type="number"
+          id="ist"
+          maxlength="1"
+          onkeyup="clickEvent(this,'sec')"
+        />
+        <input
+          type="number"
+          id="sec"
+          maxlength="1"
+          onkeyup="clickEvent(this,'third')"
+          onkeydown="goBack(this,'ist')"
+        />
+        <input
+          type="number"
+          id="third"
+          maxlength="1"
+          onkeyup="clickEvent(this,'fourth')"
+          onkeydown="goBack(this,'sec')"
+        />
+        <input
+          type="number"
+          id="fourth"
+          maxlength="1"
+          onkeydown="goBack(this,'third')"
+        />
+      </div>
+      <button id="confirmButton">CONFIRM</button>
+    </div>
+    <script async src="index.js"></script>
+  </body>
 </html>

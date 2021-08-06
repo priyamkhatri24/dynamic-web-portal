@@ -3,7 +3,7 @@ let cropModal = null;
 function cropperStart(modal) {
   const el = document.getElementById("profilePhoto");
   vanilla = new Croppie(el, {
-    viewport: { width: 300, height: 300, type: "circle" },
+    viewport: { width: 300, height: 300, type: "square" },
     boundary: { width: 300, height: 300 },
     showZoomer: true,
     enableOrientation: true,
@@ -35,10 +35,18 @@ function uploadFiles(e) {
     });
 }
 
+function convertCanvasToImage(canvas) {
+  const image = new Image();
+  image.src = canvas.toDataURL();
+  return image;
+}
+
 function cropDone() {
-  vanilla.result("blob").then(function (blob) {
+  vanilla.result("rawcanvas").then(function (blob) {
     const name = new Date().getTime() * Math.floor(Math.random() * 100);
+
     const file = new File([blob], `name.png`);
+    console.log(blob, "blob");
     uploadFiles(file);
   });
 }

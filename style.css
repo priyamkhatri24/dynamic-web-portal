@@ -1,0 +1,68 @@
+body {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  width: 100%;
+}
+.logo {
+  width: 20%;
+  height: auto;
+}
+#myProgress {
+  width: 25%;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid rgb(29, 143, 196);
+  margin: 10px auto;
+}
+
+#myBar {
+  height: 20px;
+  margin: 5px;
+  background-color: rgb(29, 143, 196);
+}
+
+.text {
+  font-size: 2em;
+  color: #9e9e9e;
+  text-transform: uppercase;
+  margin: 10px auto;
+  font-family: "Montserrat";
+}
+
+span {
+  border-right: 0.05em solid;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+@media screen and (max-width: 800px) {
+  #myProgress {
+    width: 50%;
+  }
+}
+/* .container {
+  animation-duration: 3s;
+  animation-delay: 2.5s;
+  animation-name: slideup;
+  position: relative;
+}
+
+@keyframes slideup {
+  from {
+    top: 0;
+  }
+
+  to {
+    top: -50vh;
+  }
+} */

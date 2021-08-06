@@ -18,14 +18,12 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./floatingLabel.css">
     <link rel="stylesheet" type="text/css" href="create.css" />
     <link rel="stylesheet" href="./croppie.css" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://rawcdn.githack.com/easylogic/colorpicker/main/dist/EasyLogicColorPicker.css"
-    />
-    <script src="https://rawcdn.githack.com/easylogic/colorpicker/06bd4889077a38a0eff61673a167345be1724acd/dist/EasyLogicColorPicker.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <title>Create Domain</title>
   </head>
 
@@ -120,9 +118,17 @@
       </div>
     </div>
     <section>
-      <h3 class="text-center my-4 heading">Select Your Domain</h3>
-      <canvas id="canvas" width="60" height="60" style="display: none"></canvas>
-      <div class="d-flex text-center mx-5 my-3">
+      <!-- <h3 class="text-center my-4 heading">Select Your Domain</h3> -->
+      <div class="main">
+      <div class="otpContainer">
+        <div class="barContainer">
+          <img class="logoImage" src="../assets/ingiLOGO.png" />
+          <div id="myProgress">
+            <div id="myBar"></div>
+          </div>
+        </div>
+        <h6 class="mb-4">Institute info</h6>
+        <div class="d-flex text-center">
         <label id="file-input" htmlFor="file-input">
           <!-- <img
             src="./user.svg"
@@ -130,6 +136,12 @@
             class="profile"
             id="profilePic"
           /> -->
+          <canvas
+            id="canvas"
+            width="512"
+            height="512 "
+            style="display: none"
+          ></canvas>
 
           <input
             id="file-input"
@@ -139,10 +151,23 @@
             onchange="uploadFile(this)"
           />
         </label>
-        <span class="ml-3 uploadText my-auto">Add A Logo</span>
+        <!-- <span class="ml-3 uploadText my-auto">Add A Logo (Optional)</span> -->
       </div>
-      <h6 class="text-center my-4">Enter a web address</h6>
-      <div class="input-group mb-3 mx-auto w-75">
+      <p class='mb-4 grayText'>Add A Logo (Optional)</p> 
+      
+      <form class='mt-1 formContainer'>
+        <label class='has-float-label my-auto'>
+          <input class='form-control my-2 client_name' name='client_name' type='text' placeholder='Institute Name' required/>
+          <span>Institute Name</span>
+      </label>
+      <!-- <span class="formHeading">Tagline</span> -->
+      <label class='has-float-label my-auto'>
+          <input class='form-control  my-2 tagline' name='tagline' type='text' placeholder='Tagline' />
+          <span>Tagline</span>
+      </label>
+      </form>
+      <h6 class="mt-5 mb-4">Choose your domain</h6>
+      <div class="input-group mb-3 mx-auto">
         <input
           type="text"
           class="form-control"
@@ -150,12 +175,14 @@
           aria-label="Name"
           aria-describedby="basic-addon2"
           id="domainName"
+          
         />
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2"
             >.ingeniumedu.com</span
           >
         </div>
+
         <button onclick="verifyDomain()" class="nextButton">Verify</button>
       </div>
       <small
@@ -167,19 +194,81 @@
       <small class="text-danger text-center" id="noDomain" style="display: none"
         >Oops! This domain is taken.</small
       >
+      <ul class="domainCheckContainer">
+        <li><ion-icon class="mr-4" name="ellipse"></ion-icon>At least 4 characters</li>
+        <li><ion-icon class="mr-4" name="ellipse"></ion-icon>No space</li>
+        <li><ion-icon class="mr-4" name="ellipse"></ion-icon>No special characters</li>
+        <li><ion-icon class="mr-4" name="ellipse"></ion-icon>No more than 21 characters</li>
+        <!-- <li><ion-icon class="mr-4 greenBullet" name="ellipse"></ion-icon>Available</li> -->
+      </ul>
+      
+      
+      <div class="otherSuggestions">
+        <p>Other suggestions:</p>
+        
+      </div>
       <div id="suggestions"></div>
     </section>
-    <main id="main">
-      <h3 class="text-center my-4 heading">Choose Theme Color</h3>
-      <div class="wrap">
+    
+    <div class="color_container">
+      <h6 class="mt-5 mobileLeft">Select your theme color</h6>
+      <div class="cLists">
+      <ul class="colorList my-4 pl-0">
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+      </ul>
+      <ul class="colorList my-4 pl-0">
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+      </ul>
+      <ul class="colorList my-4 pl-0">
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+      </ul>
+      <ul class="colorList my-4 pl-0">
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+      </ul>
+      <ul class="colorList my-4 pl-0">
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+      </ul>
+      <ul class="colorList my-4 pl-0">
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+      </ul>
+      <ul class="colorList my-4 pl-0">
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+        <li><ion-icon class="colorIcon" name="ellipse"></ion-icon></li>
+      </ul>
+      </div>
+      <div class="selectedColorContainer">
+        <ion-icon class="selectedColor" name="ellipse"></ion-icon>
+        <h6 class="selectedColorHex"></h6>
+      </div>
+      <!-- <div class="wrap">
         <div class="body">
-          <div id="color_picker"></div>
+          <div id="color_picker"></div> 
           <p class="sample mt-4 mt-md-0 ml-0 ml-md-5">
             <i class="sample__color"></i>
             <em class="sample__code"></em>
           </p>
         </div>
-        <!-- <nav class="controller">
+         <nav class="controller">
                 <label>
                     <span>Type: </span>
                     <select onchange="onChangeType(this)">
@@ -190,9 +279,9 @@
                         <option value="none">none</option>
                     </select>
                 </label>
-            </nav> -->
-      </div>
-    </main>
+            </nav> 
+      </div> -->
+    </div>
     <div class="d-flex justify-content-center m-5">
       <button
         id="launchButton"
@@ -202,7 +291,11 @@
         Launch App Now
       </button>
     </div>
+  </div>
+
     <script async src="index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

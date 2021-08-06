@@ -23,7 +23,7 @@ input {
   border: none;
   border-radius: 5px;
   text-align: center;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 800;
   font-size: 1.2rem;
   background: #eef2f3;
@@ -31,15 +31,19 @@ input {
 
 .OtpHeading {
   text-align: center;
-  font-family: 'Montserrat';
-  color: rgba(38, 153, 251, 1);
+  font-family: "Montserrat";
+  color: #00a0d1;
 }
-
+.OtpNumber {
+  text-align: center;
+  font-family: "Montserrat";
+  color: #00a0d1;
+}
 button {
   width: 150px;
   height: 40px;
   margin: 25px auto 0px auto;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 700;
   color: #fff;
   font-size: 1.1rem;
@@ -47,7 +51,7 @@ button {
   border-radius: 5px;
   letter-spacing: 2px;
   cursor: pointer;
-  background: rgba(38, 153, 251, 1); /* fallback for old browsers */
+  background: #00a0d1; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
     #9bc5c3,
@@ -58,4 +62,57 @@ button {
     #9bc5c3,
     rgba(38, 153, 251, 1)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.barContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 90%;
+  margin: 20px auto;
+  position: absolute;
+  top: 0;
+}
+
+#myProgress {
+  width: 100%;
+  background-color: rgba(173, 173, 173, 0.65);
+  border-radius: 10px;
+  margin: 15px auto;
+  border-radius: 100px;
+}
+
+#myBar {
+  width: 66%;
+  height: 15px;
+  border-radius: 100px;
+  background-color: #00a0d1;
+}
+
+.logoImage {
+  width: 25%;
+  margin: 20px 0px;
+}
+
+@media screen and (max-width: 800px) {
+  .logoImage {
+    width: 35%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .OtpHeading {
+    font-size: 95%;
+  }
+  .OtpNumber {
+    font-size: 20px;
+  }
+  .userInput {
+    transform: scale(0.8);
+  }
+}
+@media screen and (max-height: 500px) {
+  .barContainer {
+    display: none;
+  }
 }

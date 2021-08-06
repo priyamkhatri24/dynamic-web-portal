@@ -17,16 +17,16 @@
   z-index: 3;
   line-height: 1;
   padding: 0 1px;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   color: rgba(0, 0, 0, 0.87);
-  font-weight: lighter;
+  font-weight: 900;
 }
 
-.has-float-label > input[type="text"]:focus + span,
-.has-float-label > input[type="password"]:focus + span,
-.has-float-label > input[type="number"]:focus + span,
-.has-float-label > input[type="date"]:focus + span,
-.has-float-label > input[type="time"]:focus + span,
+.has-float-label > input[type='text']:focus + span,
+.has-float-label > input[type='password']:focus + span,
+.has-float-label > input[type='number']:focus + span,
+.has-float-label > input[type='date']:focus + span,
+.has-float-label > input[type='time']:focus + span,
 .has-float-label > textarea:focus + span {
   color: var(--primary-blue);
 }
@@ -38,7 +38,7 @@
 .has-float-label label::after,
 .has-float-label > span::after,
 .has-float-label > textarea::after {
-  content: " ";
+  content: ' ';
   display: block;
   position: absolute;
   background: white;
@@ -128,11 +128,11 @@ input[readonly].form-control {
   border-top-left-radius: 0;
 }
 
-.has-float-label > input[type="text"]:focus,
-.has-float-label > input[type="date"]:focus,
-.has-float-label > input[type="password"]:focus,
-.has-float-label > input[type="number"]:focus,
-.has-float-label > input[type="time"]:focus,
+.has-float-label > input[type='text']:focus,
+.has-float-label > input[type='date']:focus,
+.has-float-label > input[type='password']:focus,
+.has-float-label > input[type='number']:focus,
+.has-float-label > input[type='time']:focus,
 .has-float-label > textarea:focus {
   border-color: var(--primary-blue);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
@@ -140,16 +140,16 @@ input[readonly].form-control {
   outline: 0 none;
 }
 
-.has-float-label > input[type="text"],
-.has-float-label > input[type="password"],
-.has-float-label > input[type="date"],
-.has-float-label > input[type="number"],
-.has-float-label > input[type="text"],
-.has-float-label > input[type="time"] {
+.has-float-label > input[type='text'],
+.has-float-label > input[type='password'],
+.has-float-label > input[type='date'],
+.has-float-label > input[type='number'],
+.has-float-label > input[type='text'],
+.has-float-label > input[type='time'] {
   border-color: rgba(0, 0, 0, 0.54);
   border-radius: 5px;
   color: rgba(0, 0, 0, 0.87);
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 600;
   height: 32px;
 }
@@ -158,6 +158,6 @@ input[readonly].form-control {
   border-color: rgba(0, 0, 0, 0.54);
   border-radius: 5px;
   color: rgba(0, 0, 0, 0.87);
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   font-weight: 600;
 }
